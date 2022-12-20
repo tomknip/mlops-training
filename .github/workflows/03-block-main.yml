@@ -1,0 +1,5 @@
+on:
+  [pull_request]
+
+- name: Placeholder
+  run: echo "Will add code checks here in next challenge"
