@@ -15,9 +15,7 @@ jobs:
       uses: azure/login@v1
       with:
         creds: ${{secrets.AZURE_CREDENTIALS}}
-    - name: attach workspace
-      run: az ml folder attach -w ml-personal -g ml-personal
     - name: run pipeline
-      run: az ml run submit-pipeline -n github-manual-trigger -y src/job.yml
+      run: az ml job create -n github-manual-trigger --file src/job.yml --workspace-name ml-personal --resource-group ml-personal
 
 
