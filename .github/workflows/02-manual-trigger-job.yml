@@ -15,7 +15,6 @@ jobs:
       uses: azure/login@v1
       with:
         creds: ${{secrets.AZURE_CREDENTIALS}}
-    - name: Run Python Job
-      uses: az ml job create --file job.yml --resource-group ml-personal --workspace-name ml-personal
+
 
 
