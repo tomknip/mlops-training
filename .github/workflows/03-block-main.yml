@@ -5,7 +5,7 @@ on:
 
 jobs:
   job1:
-    name: Linting
+    name: linting-pr
     runs-on: ubuntu-latest
     steps:
     - name: Check out repo
@@ -22,7 +22,7 @@ jobs:
         flake8 src/model/
 
   job2:
-    name: Unit-testing
+    name: unit-testing-pr
     runs-on: ubuntu-latest
     steps:
     - name: Check out repo
