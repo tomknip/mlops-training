@@ -1,0 +1,42 @@
+name: Automatically trigger an Azure Machine Learning job
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  train-dev:
+    runs-on: ubuntu-latest
+    environment: 
+      name: development
+    steps:
+    - name: Check out repo
+      uses: actions/checkout@main
+    - name: Install az ml extension
+      run: az extension add -n ml -y
+    - name: Azure login
+      uses: azure/login@v1
+      with:
+        creds: ${{secrets.AZURE_CREDENTIALS}}
+    - name: run pipeline
+      run: az ml job create -n github-trigger-dev --file src/job.yml --workspace-name ml-personal --resource-group ml-personal
+  
+  train-prod:
+    needs: train-dev
+    runs-on: ubuntu-latest
+    environment: 
+      name: production
+    steps:
+    - name: Check out repo
+      uses: actions/checkout@main
+    - name: Install az ml extension
+      run: az extension add -n ml -y
+    - name: Azure login
+      uses: azure/login@v1
+      with:
+        creds: ${{secrets.AZURE_CREDENTIALS}}
+    - name: run pipeline
+      run: az ml job create -n github-trigger-prod --file src/job.yml --workspace-name ml-personal --resource-group ml-personal -s True
+
+
