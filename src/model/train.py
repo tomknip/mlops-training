@@ -27,10 +27,14 @@ def main(args):
 
 def get_csvs_df(path):
     if not os.path.exists(path):
-        raise RuntimeError(f"Cannot use non-existent path provided: {path}")
+        raise RuntimeError(
+            f"Cannot use non-existent path provided: {path}"
+            )
     csv_files = glob.glob(f"{path}/*.csv")
     if not csv_files:
-        raise RuntimeError(f"No CSV files found in provided data path: {path}")
+        raise RuntimeError(
+            f"No CSV files found in provided data path: {path}"
+            )
     return pd.concat((pd.read_csv(f) for f in csv_files), sort=False)
 
 
@@ -59,8 +63,8 @@ def split_data(df):
 
 def train_model(reg_rate, X_train, X_test, y_train, y_test):
     # train model
-    LogisticRegression(C=1 / reg_rate, solver="liblinear").fit(X_train, 
-                                                                y_train)
+    LogisticRegression(C=1 / reg_rate, solver="liblinear") \
+        .fit(X_train, y_train)
 
 
 def parse_args():
