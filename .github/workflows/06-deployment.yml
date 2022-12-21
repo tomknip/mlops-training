@@ -18,7 +18,7 @@ jobs:
       with:
         creds: ${{secrets.AZURE_CREDENTIALS}}
     - name: Create endpoint
-      run: az ml online-endpoint create --file src/create-endpoint.yml --workspace-name ml-personal --resource-group ml-personal --all-traffic
+      run: az ml online-endpoint create --file src/create-endpoint.yml --workspace-name ml-personal --resource-group ml-personal
     
   deploy-endpoint:
     runs-on: ubuntu-latest
