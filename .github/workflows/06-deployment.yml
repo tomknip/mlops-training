@@ -21,6 +21,7 @@ jobs:
       run: az ml online-endpoint create --file src/create-endpoint.yml --workspace-name ml-personal --resource-group ml-personal
     
   deploy-endpoint:
+    needs: create-endpoint
     runs-on: ubuntu-latest
     environment: 
       name: production
