@@ -9,7 +9,7 @@ jobs:
     environment: 
       name: production
     steps:
-    - name: Check out repo Dev
+    - name: Check out repo
       uses: actions/checkout@main
     - name: Install az ml extension
       run: az extension add -n ml -y
@@ -18,7 +18,7 @@ jobs:
       with:
         creds: ${{secrets.AZURE_CREDENTIALS}}
     - name: Create endpoint
-      run: az ml online-endpoint create --file src/create-endpoint.yml --workspace-name ml-personal --resource-group ml-personal
+      run: az ml online-endpoint update --file src/create-endpoint.yml --workspace-name ml-personal --resource-group ml-personal
     
   deploy-endpoint:
     needs: create-endpoint
@@ -26,7 +26,7 @@ jobs:
     environment: 
       name: production
     steps:
-    - name: Check out repo Dev
+    - name: Check out repo
       uses: actions/checkout@main
     - name: Install az ml extension
       run: az extension add -n ml -y
