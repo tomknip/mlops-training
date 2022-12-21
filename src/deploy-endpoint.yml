@@ -1,5 +1,6 @@
 $schema: https://azuremlschemas.azureedge.net/latest/managedOnlineDeployment.schema.json
-name: mlflow-endpoint-diabetes
-endpoint_name: diabetes-classifier
-instance_type: Standard_F2s_v2
+name: mlflow-deployment
+endpoint_name: mlflow-endpoint-diabetes
+model: azureml:diabetes-classifier:1
+instance_type: Standard_DS2_v2
 instance_count: 1

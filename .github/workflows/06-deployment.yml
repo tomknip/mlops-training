@@ -35,7 +35,7 @@ jobs:
       with:
         creds: ${{secrets.AZURE_CREDENTIALS}}
     - name: Deploy endpoint
-      run: az ml online-deployment create --file src/deploy-endpoint.yml --workspace-name ml-personal --resource-group ml-personal --all-traffic
+      run: az ml online-deployment update --file src/deploy-endpoint.yml --workspace-name ml-personal --resource-group ml-personal --all-traffic
 
 
 
